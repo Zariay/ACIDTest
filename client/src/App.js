@@ -4,29 +4,24 @@ import axios from "axios";
 class App extends Component {
     state = {
         data: [],
-        x: 0,
-        y: 0,
-        z: 0,
-        r: 0,
-        g: 0,
-        b: 0,
+        x: '',
+        y: '',
+        z: '',
+        r: '',
+        g: '',
+        b: '',
     };
 
-addData = (xVal, yVal, zVal, rVal, gVal, bVal) => {
-    axios.post("http://localhost:3000/api/putData", {
-        x: xVal,
-        y: yVal,
-        z: zVal,
-        r: rVal,
-        g: gVal,
-        b: bVal
-    });
-};
-
-handleInput(e){
-    this.setState({[e.target.name]: e.target.value});
-}
-
+    addData = (xVal, yVal, zVal, rVal, gVal, bVal) => {
+        axios.post("http://localhost:3000/api/putData", {
+            x: xVal,
+            y: yVal,
+            z: zVal,
+            r: rVal,
+            g: gVal,
+            b: bVal
+        });
+    };
 
 //UI
     render(){
@@ -38,17 +33,17 @@ handleInput(e){
                 </ul>
                 <div>
                     <label> X </label>
-                    <input type="text" pattern="[0-9]" min="0" max="360" value={this.state.x} onChange={this.handleInput.bind(this)} placeholder="0" style={{width:"30px"}} />
+                    <input type="number" min="0" max="360" onChange={e => this.setState({x: e.target.value})} placeholder="0" style={{width:"40px"}} />
                     <label> Y </label>
-                    <input type="text" pattern="[0-9]" min="0" max="360" value={this.state.y} onChange={this.handleInput.bind(this)}  placeholder="0" style={{width:"30px"}} />
+                    <input type="number" min="0" max="360" onChange={e => this.setState({Y: e.target.value})}  placeholder="0" style={{width:"40px"}} />
                     <label> Z </label>
-                    <input type="text" pattern="[0-9]" min="0" max="360" value={this.state.z} onChange={this.handleInput.bind(this)}  placeholder="0" style={{width:"30px"}} />
+                    <input type="number" min="0" max="360" onChange={e => this.setState({z: e.target.value})}  placeholder="0" style={{width:"40px"}} />
                     <label> R </label>
-                    <input type="text" pattern="[0-9]" min="0" max="255" value={this.state.r} onChange={this.handleInput.bind(this)}  placeholder="0" style={{width:"30px"}} />
+                    <input type="number" min="0" max="255" onChange={e => this.setState({r: e.target.value})}  placeholder="0" style={{width:"40px"}} />
                     <label> G </label>
-                    <input type="text" pattern="[0-9]" min="0" max="255" value={this.state.g} onChange={this.handleInput.bind(this)}  placeholder="0" style={{width:"30px"}} />
+                    <input type="number" min="0" max="255" onChange={e => this.setState({g: e.target.value})}  placeholder="0" style={{width:"40px"}} />
                     <label> B </label>
-                    <input type="text" pattern="[0-9]" min="0" max="255" value={this.state.b} onChange={this.handleInput.bind(this)}  placeholder="0" style={{width:"30px"}} />
+                    <input type="number" min="0" max="255" onChange={e => this.setState({b: e.target.value})}  placeholder="0" style={{width:"40px"}} />
                     <button onClick={() => this.addData(this.state.x, this.state.y, this.state.z, this.state.r, this.state.g, this.state.b)}>
                     Add
                     </button>
