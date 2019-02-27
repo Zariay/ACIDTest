@@ -19,7 +19,7 @@ class App extends Component {
         while (currentIds.includes(idToBeAdded)) {
          ++idToBeAdded;
         }
-        axios.post("http://localhost:3000/api/putData", {
+        axios.post("http://localhost:3001/api/putData", {
             id: idToBeAdded,
             x: xVal,
             y: yVal,
@@ -44,7 +44,7 @@ class App extends Component {
                     <label> X </label>
                     <input type="number" min="0" max="360" onChange={e => this.setState({x: e.target.value})} placeholder="0" style={{width:"40px"}} />
                     <label> Y </label>
-                    <input type="number" min="0" max="360" onChange={e => this.setState({Y: e.target.value})}  placeholder="0" style={{width:"40px"}} />
+                    <input type="number" min="0" max="360" onChange={e => this.setState({y: e.target.value})}  placeholder="0" style={{width:"40px"}} />
                     <label> Z </label>
                     <input type="number" min="0" max="360" onChange={e => this.setState({z: e.target.value})}  placeholder="0" style={{width:"40px"}} />
                     <label> R </label>

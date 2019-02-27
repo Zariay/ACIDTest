@@ -10,7 +10,7 @@ const app = express();
 const router = express.Router();
 
 //MongoDB database
-const dbRoute = "mongodb+srv://testuser:testuserpw@alexcluster-alfjn.mongodb.net/test?retryWrites=true";
+const dbRoute = "mongodb+srv://test:testpw@alexcluster-alfjn.mongodb.net/test?retryWrites=true";
 
 mongoose.connect(
     dbRoute,  
@@ -41,31 +41,32 @@ router.post("/updateData", (req, res) => {
     });
 });
 
-//delete method to remove existing data in database
+//add method to add data into database
 router.post ("/putData", (req, res) => {
     let data = new Data();
 
     const { id, x, y, z, r, g, b } = req.body;
-    
-    if((!id && id !=0)) {
-        return res.json({
-            success: false,
-            error: "Invalid inputs"
-        });
-    }
-    data.x = x;
-    data.y = y;
-    data.z = z;
-    data.r = r;
-    data.g = g;
+
+    if ((!id && id !== 0)) {
+    return res.json({
+      success: false,
+      error: "INVALID INPUTS"
+    });
+  }
+
     data.b = b;
+    data.g = g;
+    data.r = r;
+    data.z = z;
+    data.y = y;
+    data.x = x;
     data.id = id;
-    data.save(err=> {
+    data.save(err => {
         if (err) return res.json({ success: false, error: err});
-        return res.json({success: true, data:data });
+        return res.json({success: true});
     });
 });
 
 app.use("/api", router);
 
-app.listen(API_PORT, () => console.log("Listening on port ${API_PORT}"));
+app.listen(API_PORT, () => console.log('Listening on port ${API_PORT}'));
