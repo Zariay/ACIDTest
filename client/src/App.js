@@ -4,7 +4,6 @@ import axios from "axios";
 class App extends Component {
     state = {
         data: [],
-        id: 0,
         x: '',
         y: '',
         z: '',
@@ -14,13 +13,7 @@ class App extends Component {
     };
 
     addData = (xVal, yVal, zVal, rVal, gVal, bVal) => {
-        let currentIds = this.state.data.map(data => data.id);
-        let idToBeAdded = 0;
-        while (currentIds.includes(idToBeAdded)) {
-         ++idToBeAdded;
-        }
         axios.post("http://localhost:3001/api/putData", {
-            id: idToBeAdded,
             x: xVal,
             y: yVal,
             z: zVal,
@@ -32,13 +25,10 @@ class App extends Component {
 
 //UI
     render(){
-        const { data } = this.state;
         return (
             <div>  
                 <ul>
                     <p> Please enter all applicables values for x, y, z, and r, g, b. </p>
-                    {data.length <= 0 ? "No entries yet" : data.map(dat => (<p> Current values added: {dat.id} </p>))}
-
                 </ul>
                 <div>
                     <label> X </label>
