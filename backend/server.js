@@ -23,24 +23,6 @@ db.once("open", () => console.log("Connected to database"));
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-
-//get method to obtain all data in database
-router.get("/getData", (req, res) => {
-    Data.find((err, data) => {
-        if (err) return res.json({ success: false, error: err});
-        return res.json({success: true, data:data });
-    });
-});
-
-//update method to overwrite existing data in database
-router.post("/updateData", (req, res) => {
-    const { id, update } = req.body;
-    Data.findOneAndUpdate(id, update, err => {
-        if (err) return res.json({ success: false, error: err});
-        return res.json({success: true, data:data });
-    });
-});
-
 //add method to add data into database
 router.post ("/putData", (req, res) => {
     let data = new Data();
