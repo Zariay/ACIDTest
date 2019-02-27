@@ -45,15 +45,20 @@ router.post("/updateData", (req, res) => {
 router.post ("/putData", (req, res) => {
     let data = new Data();
 
-    const { id, message } = req.body;
+    const { id, x, y, z, r, g, b } = req.body;
     
-    if((!id && id !=0) || !message) {
+    if((!id && id !=0)) {
         return res.json({
             success: false,
             error: "Invalid inputs"
         });
     }
-    data.message = message;
+    data.x = x;
+    data.y = y;
+    data.z = z;
+    data.r = r;
+    data.g = g;
+    data.b = b;
     data.id = id;
     data.save(err=> {
         if (err) return res.json({ success: false, error: err});
