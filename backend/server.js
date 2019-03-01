@@ -6,7 +6,7 @@ const logger = require("morgan");
 const Data = require("./data");
 const cors = require("cors");
 
-const API_PORT = 3000;
+const API_PORT = 3001;
 const app = express();
 const router = express.Router();
 
@@ -39,6 +39,7 @@ router.post ("/putData", (req, res) => {
         res.json('Values added successfully');
     })
     .catch(err => {
+        console.log(err);
         res.status(400).send("unable to save to database");
     });
 });
