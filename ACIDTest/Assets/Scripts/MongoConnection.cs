@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MongoDB.Driver;
-using MongoDB.Bson;
+//using MongoDB.Bson;
 
 public class MongoConnection : MonoBehaviour
 {
@@ -16,11 +16,5 @@ public class MongoConnection : MonoBehaviour
         server = client.GetServer();
         server.Connect();
         db = server.GetDatabase("cubeData");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
