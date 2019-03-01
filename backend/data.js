@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const DataSchema = new Schema(
+const data = new Schema(
     {
         x: Number,
         y: Number,
@@ -11,7 +11,7 @@ const DataSchema = new Schema(
         g: Number,
         b: Number
     },
-    { timestamps: true }
+    { collection: "cube" }
 );
 
-module.exports = mongoose.model("Data", DataSchema);
+module.exports = mongoose.model("data", data);
