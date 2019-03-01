@@ -11,7 +11,8 @@ const app = express();
 const router = express.Router();
 
 //MongoDB database
-const dbRoute = "mongodb+srv://testuser:testuserpw@alexcluster-alfjn.mongodb.net/test?retryWrites=true";
+//const dbRoute = "mongodb+srv://testuser:testuserpw@alexcluster-alfjn.mongodb.net/test?retryWrites=true";
+const dbRoute = "mongodb://localhost:27017/exampleDb"
 
 mongoose.connect(
     dbRoute,  
