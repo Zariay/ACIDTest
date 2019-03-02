@@ -9,22 +9,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 public class MongoConnection : MonoBehaviour
 {
-    [BsonIgnoreExtraElements]
-    public class cubeProp
-    {
-        public ObjectId id { get; set; }
-        public int x { get; set; }
-        public int y { get; set; }
-        public int z { get; set; }
-        public int r { get; set; }
-        public int g { get; set; }
-        public int b { get; set; }
-    }
-
     private MongoClient client;
     private MongoServer server;
     private MongoDatabase db;
-    private MongoCollection<cubeProp> cubeProperties;
+    public MongoCollection<cubeProps> cubeProperties;
     
     void Start()
     {
@@ -33,20 +21,24 @@ public class MongoConnection : MonoBehaviour
         server = client.GetServer();
         server.Connect();
         db = server.GetDatabase("cubeData");
-        cubeProperties = db.GetCollection<cubeProp>("cube");
+        cubeProperties = db.GetCollection<cubeProps>("cube");
 
+        //Check if collection exists within the DB
         //if(db.CollectionExists("cube"))
         //{
         //    Debug.Log("I exist");
         //}
 
+        //check number of documents in collection
         //int collectionCount = cubeProperties.AsQueryable<cubeProp>().Count();
 
         //Debug.Log("Document count: " + collectionCount);
 
-        foreach(cubeProp item in cubeProperties.AsQueryable<cubeProp>())
-        {
-            Debug.Log("ID: " + item.id.ToJson() + " X: " + item.x.ToJson() + " Y: " + item.y.ToJson() + " Z: " + item.z.ToJson() + " R: " + item.r.ToJson() + " G: " + item.g.ToJson() + " B: " + item.b.ToJson());
-        }
+        //print each value for document
+        //foreach(cubeProps item in cubeProperties.AsQueryable<cubeProps>())
+        //{
+        //    Debug.Log("ID: " + item.id.ToJson() + " X: " + item.x.ToJson() + " Y: " + item.y.ToJson() + " Z: " + item.z.ToJson() + " R: " + item.r.ToJson() + " G: " + item.g.ToJson() + " B: " + item.b.ToJson());
+        //}
     }
 }
+
