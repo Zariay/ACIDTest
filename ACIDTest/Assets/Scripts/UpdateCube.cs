@@ -9,25 +9,30 @@ public class UpdateCube : MonoBehaviour
     [SerializeField]
     private MongoConnection mongoCon;
 
-    private Color color;
+    [SerializeField]
+    private Material mate;
+
     // Start is called before the first frame update
     void Start()
     {
         mongoCon.GetComponent<MongoConnection>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        InvokeRepeating("changeCube", 0, 1.0f);
+        StartCoroutine(changeCube());
     }
 
-    void changeCube()
+    private IEnumerator changeCube()
     {
+        WaitForSeconds wait = new WaitForSeconds(1.0f);
         foreach (cubeProps item in mongoCon.cubeProperties.AsQueryable<cubeProps>())
         {
             this.gameObject.transform.Rotate(item.x, item.y, item.z);
-            color = new Color(item.r, item.g, item.b);
+            mate.color = new Color32((byte)item.r, (byte)item.g, (byte)item.b, 255);
+            yield return wait;
         }
     }
 }

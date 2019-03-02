@@ -35,7 +35,7 @@ public class MongoConnection : MonoBehaviour
         //Debug.Log("Document count: " + collectionCount);
 
         //print each value for document
-        //foreach(cubeProps item in cubeProperties.AsQueryable<cubeProps>())
+        //foreach (cubeProps item in cubeProperties.AsQueryable<cubeProps>())
         //{
         //    Debug.Log("ID: " + item.id.ToJson() + " X: " + item.x.ToJson() + " Y: " + item.y.ToJson() + " Z: " + item.z.ToJson() + " R: " + item.r.ToJson() + " G: " + item.g.ToJson() + " B: " + item.b.ToJson());
         //}
